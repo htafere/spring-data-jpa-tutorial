@@ -1,0 +1,57 @@
+server:
+  port: '8082'
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-custom.html
+    operationsSorter: method
+
+spring:
+  profiles:
+    active: qa
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/schooldb
+    password: Hodichi81!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+---
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/schooldb
+    password: Hodichi81!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/schooldb
+    password: Hodichi81!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
